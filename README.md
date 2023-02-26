@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Your Work - Frontend APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Сервис поиска работы и сотрудников
 
 ## Available Scripts
 

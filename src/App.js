@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { BrowserRouter, Navigate } from 'react-router-dom'
+import Header from './components/Header';
+import Router from './routers/Router';
+import { Button, Stack, Container } from 'react-bootstrap';
+
+import { setAuthToken } from './helpers/setToken'
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const token = localStorage.getItem("token");
+    if (token) {
+        setAuthToken(token);
+    }
+
+    return (
+        <div className="App">
+            <Container>
+                <Header/>
+                <BrowserRouter>
+                    <Router />
+                </BrowserRouter>
+            </Container>
+        </div>
+    );
 }
 
 export default App;
