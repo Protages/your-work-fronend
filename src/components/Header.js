@@ -12,7 +12,7 @@ const Header = () => {
         <>
         <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Your-work</Navbar.Brand>
+          <Navbar.Brand href="/vacancies">Your-work</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/vacancies">Вакансии</Nav.Link>
             {isAuth === true &&
@@ -33,7 +33,7 @@ const Header = () => {
             ? <>
             {authData.account_type === 'company'
               ?<><Nav.Link href={`/company/${authData.related_obj_id}/`}>Ваша компания</Nav.Link></>
-              :<><Navbar.Text>Вы кандиат!</Navbar.Text></>
+              :<><Nav.Link href={`/candidate/${authData.related_obj_id}/`}>Ваш профиль</Nav.Link></>
             }
               <Nav.Link href="/logout">Выйти</Nav.Link>
             </>

@@ -22,4 +22,9 @@ export default class CandidateService {
         const response = await axios.get(`http://127.0.0.1:8000/api/v1/candidate/${candidate_id}/experience/`)
         return response
     }
+
+    static async getCandidateById(candidate_id) {
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/candidate/${candidate_id}/`)
+        return response
+    }
 }

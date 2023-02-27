@@ -8,7 +8,7 @@ import { getAutData } from '../helpers/setToken';
 import AddExperience from '../components/addExperience';
 
 
-const CandidateExperienceList = ({vacancy_id}) => {
+const CandidateExperienceList = ({candidate_id}) => {
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [isAuth, authData] = getAutData()
 
@@ -21,6 +21,10 @@ const CandidateExperienceList = ({vacancy_id}) => {
         if (isAuth && authData.account_type === 'candidate') {
             const response = await CandidateService.getAllCandidateExperiences(authData.related_obj_id)
             setExperiences(response.data)
+        } 
+        else if (candidate_id) {
+            const response = await CandidateService.getAllCandidateExperiences(candidate_id)
+            setExperiences(response.data)
         }
     })
 
@@ -31,14 +35,19 @@ const CandidateExperienceList = ({vacancy_id}) => {
     return (
         <>
         <Row>
-        <div className="d-grid gap-2 mt-3">
+        {!candidate_id &&
+            <>
+            <div className="d-grid gap-2 mt-3">
             <Button variant="primary" size="lg" onClick={e => setIsModalVisible(true)}>
                 Добавить опыт работы
             </Button>
-        </div>
-        {isModalVisible &&
-            <AddExperience isVisible={isModalVisible} setIsVidible={setIsModalVisible}/>
+            </div>
+            {isModalVisible &&
+                <AddExperience isVisible={isModalVisible} setIsVidible={setIsModalVisible}/>
+            }
+            </>
         }
+        
         {experiences.map((experience, indx) => (
         <Col xs={1} md={4} className="g-4" key={indx}>
             {/* <Link to={`/reaction/${reaction.id}/`}> */}

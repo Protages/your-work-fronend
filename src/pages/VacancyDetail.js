@@ -4,18 +4,20 @@ import { useFetch } from "../hooks/useFetch";
 
 import VacanciestService from '../API/VacanciesService';
 import CompanyReactionsList from './CompanyReactionsList';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getAutData } from '../helpers/setToken';
+import AddReaction from '../components/addReaction';
 
 
 const VacancyDetail = () => {
+    const [isModalVisible, setisModalVisible] = useState(false)
     const [isAuth, authData] = getAutData()
     const [isOurCompany, setIsOurCompany] = useState(false)
 
     let { id } = useParams();
     id = parseInt(id)
     const [vacancy, setVacancy] = useState({
-        company: 10, description: "", 
+        company: 0, description: "", 
         id: id, img: null, required_experience: 0, 
         salary: 0, skills: "", title: ""
     })
@@ -46,6 +48,14 @@ const VacancyDetail = () => {
     return (
         <>
         <Container className="mt-3">
+            {isModalVisible &&
+                <AddReaction 
+                    isVisible={isModalVisible} 
+                    setIsVidible={setisModalVisible} 
+                    candidate_id={parseInt(authData.related_obj_id)} 
+                    vacancy_id={id}
+                />
+            }
             <Row>
             <Card
                 bg="dark"
@@ -58,9 +68,16 @@ const VacancyDetail = () => {
                 <Card.Text>{vacancy.description}</Card.Text>
                 <Card.Title>Требуемые наваки</Card.Title>
                 <Card.Text>{vacancy.skills}</Card.Text>
+                <Card.Title>Компания</Card.Title>
+                <Card.Text> 
+                    <Link to={`/company/${vacancy.company}/`}> {vacancy.company} (клик)</Link>
+                </Card.Text>
                 {isOurCompany === true
                 ? <><Button variant="primary">Изменить нашу вакансию</Button></>
-                : <></>
+                : <>{isAuth &&
+                        <Button variant="primary" onClick={e => setisModalVisible(true)}>Откликнуться</Button>
+                    }
+                </>
                 }
             </Card.Body>
             </Card>
