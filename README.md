@@ -15,7 +15,7 @@ git clone https://github.com/Protages/your-work-frontend
 ```properties
 cd your-work-frontend
 ```
-Установка зависимостей
+Установка зависимостей (если у вас не установлен node.js - https://nodejs.org/en/download/)
 ```properties
 npm install
 ```

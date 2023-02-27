@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useFetch } from "../hooks/useFetch";
 
 import LoginService from '../API/LoginService';
-import { createSearchParams, Link, useNavigate } from 'react-router-dom';
+import { createSearchParams, Link, Navigate, useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../helpers/setToken'
 
 
@@ -13,6 +13,8 @@ const Logout = () => {
     localStorage.removeItem('refresh')
     localStorage.removeItem('account_type')
     localStorage.removeItem('related_obj_id')
+
+    return <Navigate to="/vacancies" replace />
 }
 
 export default Logout

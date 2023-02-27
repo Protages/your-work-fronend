@@ -12,6 +12,11 @@ export default class VacanciestService {
         return response
     }
 
+    static async getVacancyReactions(vacancy_id) {
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/vacancy/${vacancy_id}/reaction/`)
+        return response
+    }
+
     // static async putBlockedCard(card_id) {
     //     const data = {is_blocked: 'true'}
     //     const response = await axios.put(`http://127.0.0.1:8000/api/v1/card/${card_id}/`, data)

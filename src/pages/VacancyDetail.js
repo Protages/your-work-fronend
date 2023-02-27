@@ -3,6 +3,7 @@ import { Button, Stack, Container, Card, Row, Col } from 'react-bootstrap';
 import { useFetch } from "../hooks/useFetch";
 
 import VacanciestService from '../API/VacanciesService';
+import CompanyReactionsList from './CompanyReactionsList';
 import { useParams } from 'react-router-dom';
 import { getAutData } from '../helpers/setToken';
 
@@ -12,6 +13,7 @@ const VacancyDetail = () => {
     const [isOurCompany, setIsOurCompany] = useState(false)
 
     let { id } = useParams();
+    id = parseInt(id)
     const [vacancy, setVacancy] = useState({
         company: 10, description: "", 
         id: id, img: null, required_experience: 0, 
@@ -32,7 +34,7 @@ const VacancyDetail = () => {
     }, [vacancy])
 
     const isOurCompanyCheck = () => {
-        if (isAuth === true && authData.account_type === 'company' && authData.related_obj_id == parseInt(vacancy.company)) {
+        if (isAuth === true && authData.account_type === 'company' && authData.related_obj_id == vacancy.company) {
             console.log('idiasidasidaisdi')
             setIsOurCompany(true)
         }
@@ -63,6 +65,10 @@ const VacancyDetail = () => {
             </Card.Body>
             </Card>
             </Row>
+            {isOurCompany === true
+                ? <><CompanyReactionsList vacancy_id={id}/></>
+                : <></>
+            }
         </Container>
         </>
     )

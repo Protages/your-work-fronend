@@ -22,8 +22,8 @@ const Header = () => {
                 <Nav.Link href="/our_reactions">Все ваши отклики</Nav.Link>
               </>
               :<>
-                <Nav.Link href="/vacancies">Ваши отклики</Nav.Link>
-                <Nav.Link href="/vacancies">Ваш опыт</Nav.Link>
+                <Nav.Link href="/my_reactions">Ваши отклики</Nav.Link>
+                <Nav.Link href="/my_experience">Ваш опыт</Nav.Link>
               </>
               }</>
             }
@@ -32,7 +32,7 @@ const Header = () => {
             {isAuth === true
             ? <>
             {authData.account_type === 'company'
-              ?<><Navbar.Text>Вы компания!</Navbar.Text></>
+              ?<><Nav.Link href={`/company/${authData.related_obj_id}/`}>Ваша компания</Nav.Link></>
               :<><Navbar.Text>Вы кандиат!</Navbar.Text></>
             }
               <Nav.Link href="/logout">Выйти</Nav.Link>

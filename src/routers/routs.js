@@ -6,6 +6,9 @@ import Login from '../pages/Login'
 import Logout from '../pages/Logout'
 import CompanyVacanciesList from '../pages/CompanyVacanciesList'
 import CompanyReactionsList from '../pages/CompanyReactionsList'
+import CompanyPage from '../pages/CompanyPage'
+import CandidateReactionsList from '../pages/CandidateReactionsList'
+import CandidateExperienceList from '../pages/CandidateExperienceList'
 
 
 export const loginRouts = [
@@ -17,6 +20,9 @@ export const loginRouts = [
     {path: '/registration_candidate', element: <RegistrationCandidate />},
     {path: '/our_vacancies', element: <CompanyVacanciesList />},
     {path: '/our_reactions', element: <CompanyReactionsList />},
+    {path: '/company/:id', element: <CompanyPage />},
+    {path: '/my_reactions', element: <CandidateReactionsList />},
+    {path: '/my_experience', element: <CandidateExperienceList />},
     
 ]
 

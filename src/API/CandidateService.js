@@ -13,8 +13,13 @@ export default class CandidateService {
         return response
     }
 
-    // static async refreshToken() {
-    //     const response = await axios.get(`http://127.0.0.1:8000/api/v1/token//`)
-    //     return response
-    // }
+    static async getAllCandidateReactions(candidate_id) {
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/candidate/${candidate_id}/reaction/`)
+        return response
+    }
+
+    static async getAllCandidateExperiences(candidate_id) {
+        const response = await axios.get(`http://127.0.0.1:8000/api/v1/candidate/${candidate_id}/experience/`)
+        return response
+    }
 }

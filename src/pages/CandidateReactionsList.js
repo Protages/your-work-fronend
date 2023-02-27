@@ -2,13 +2,12 @@ import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Button, Stack, Container, Card, Row, Col } from 'react-bootstrap';
 import { useFetch } from "../hooks/useFetch";
 
-import CompasnyService from '../API/CompanyService';
-import VacanciestService from '../API/VacanciesService';
+import CandidateService from '../API/CandidateService';
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import { getAutData } from '../helpers/setToken';
 
 
-const CompanyReactionsList = ({vacancy_id}) => {
+const CandidateReactionsList = ({vacancy_id}) => {
     const [isAuth, authData] = getAutData()
 
     const [reactions, setReactions] = useState([{
@@ -17,13 +16,8 @@ const CompanyReactionsList = ({vacancy_id}) => {
     }])
 
     const [fetchReactions, isReactionsLoading, reactionsErrors] = useFetch(async () => {
-        if (isAuth && authData.account_type === 'company') {
-            let response = {}
-            if (vacancy_id) {
-                response = await VacanciestService.getVacancyReactions(vacancy_id)
-            } else {
-                response = await CompasnyService.getCompanyReactions(authData.related_obj_id)
-            }
+        if (isAuth && authData.account_type === 'candidate') {
+            const response = await CandidateService.getAllCandidateReactions(authData.related_obj_id)
             setReactions(response.data)
         }
     })
@@ -63,4 +57,4 @@ const CompanyReactionsList = ({vacancy_id}) => {
     )
 }
 
-export default CompanyReactionsList
+export default CandidateReactionsList

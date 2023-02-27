@@ -3,10 +3,11 @@ import { Button, Stack, Container, Card, Row, Col } from 'react-bootstrap';
 import { useFetch } from "../hooks/useFetch";
 
 import VacanciestService from '../API/VacanciesService';
+import CompasnyService from '../API/CompanyService';
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 
 
-const VacanciesList = () => {
+const VacanciesList = ({company_id}) => {
     const [vacancies, setVacancies] = useState([{
         company: 1, description: "some_description1", 
         id: 1, img: null, required_experience: 2, 
@@ -14,7 +15,12 @@ const VacanciesList = () => {
     }])
 
     const [fetchVacancies, isVacanciesLoading, vacanciesErrors] = useFetch(async () => {
-        const response = await VacanciestService.getAllVacancies()
+        let response = {}
+        if (company_id) {
+            response = await CompasnyService.getCompanyVacancies(company_id)
+        } else {
+            response = await VacanciestService.getAllVacancies()
+        }
         setVacancies(response.data)
     })
 
