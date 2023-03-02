@@ -50,7 +50,7 @@ const CompanyReactionsList = ({vacancy_id}) => {
                 <Card.Title>На вакансию</Card.Title>
                 <Card.Text><Link to={`/vacancies/${reaction.vacancy}/`}> {reaction.vacancy} (клик)</Link></Card.Text>
                 <Card.Title>Кандидат</Card.Title>
-                <Card.Text>{reaction.candidate}</Card.Text>
+                <Card.Text><Link to={`/candidate/${reaction.candidate}/`}> {reaction.candidate} (клик)</Link></Card.Text>
                 <Card.Title>Комментарий</Card.Title>
                 <Card.Text>{reaction.comment}</Card.Text>
             </Card.Body>

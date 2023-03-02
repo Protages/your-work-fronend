@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 import { getAutData } from '../helpers/setToken';
+import Logout from '../pages/Logout';
 
 const Header = () => {
     const [isAuth, authData] = getAutData()
@@ -35,7 +36,8 @@ const Header = () => {
               ?<><Nav.Link href={`/company/${authData.related_obj_id}/`}>Ваша компания</Nav.Link></>
               :<><Nav.Link href={`/candidate/${authData.related_obj_id}/`}>Ваш профиль</Nav.Link></>
             }
-              <Nav.Link href="/logout">Выйти</Nav.Link>
+              {/* <Nav.Link href="/logout">Выйти</Nav.Link> */}
+              <Nav.Link onClick={e => Logout()}>Выйти</Nav.Link> 
             </>
             : <>
               <Navbar.Text>Вы не аторизованы!</Navbar.Text>

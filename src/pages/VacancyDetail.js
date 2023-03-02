@@ -37,7 +37,6 @@ const VacancyDetail = () => {
 
     const isOurCompanyCheck = () => {
         if (isAuth === true && authData.account_type === 'company' && authData.related_obj_id == vacancy.company) {
-            console.log('idiasidasidaisdi')
             setIsOurCompany(true)
         }
         else {
@@ -57,6 +56,7 @@ const VacancyDetail = () => {
                 />
             }
             <Row>
+            <Card.Header as="h3">Подробности о вакансии</Card.Header>
             <Card
                 bg="dark"
                 text="white"
@@ -83,7 +83,10 @@ const VacancyDetail = () => {
             </Card>
             </Row>
             {isOurCompany === true
-                ? <><CompanyReactionsList vacancy_id={id}/></>
+                ? <>
+                <Card.Header as="h3">Это ваша вакансия - отклики на нее</Card.Header>
+                <CompanyReactionsList vacancy_id={id}/>
+                </>
                 : <></>
             }
         </Container>

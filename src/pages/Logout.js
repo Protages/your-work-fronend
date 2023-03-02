@@ -13,8 +13,9 @@ const Logout = () => {
     localStorage.removeItem('refresh')
     localStorage.removeItem('account_type')
     localStorage.removeItem('related_obj_id')
+    window.location.reload(false);
 
-    return <Navigate to="/vacancies" replace />
+    // return <Navigate to="/vacancies" replace />
 }
 
 export default Logout

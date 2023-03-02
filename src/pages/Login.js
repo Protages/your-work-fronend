@@ -30,11 +30,9 @@ const Login = () => {
         localStorage.setItem("related_obj_id", related_obj_id);
         setAuthToken(token)
         setShow(false)
-        return <Navigate to="/vacancies" replace />
     })
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const sendData = (e) => {
         fetchLogin()

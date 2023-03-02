@@ -14,7 +14,7 @@ import CandidatePage from '../pages/CandidatePage'
 
 export const loginRouts = [
     {path: '/login', element: <Login />},
-    {path: '/logout', element: <Logout />},
+    // {path: '/logout', element: <Logout />},
     {path: '/vacancies', element: <VacanciesList />},
     {path: '/vacancies/:id', element: <VacancyDetail />},
     {path: '/registration_company', element: <RegistrationCompany />},
