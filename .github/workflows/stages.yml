@@ -37,7 +37,7 @@ jobs:
           docker rm $(echo $CONTAINER_NAME)
 
           # Build new docker iamge
-          docker build -f Dockerfile -t dockerized-react
+          docker build . -t dockerized-react
 
           # Run new docker image in the background
-          docker run -p 3000:80 -d --name $(echo $CONTAINER_NAME) dockerized-react
+          docker run -p 3000:3000 -d --name $(echo $CONTAINER_NAME) dockerized-react
